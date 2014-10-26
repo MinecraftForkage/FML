@@ -68,6 +68,6 @@ public class FMLInjectionData
     }
     public static Object[] data()
     {
-        return new Object[] { major, minor, rev, build, mccversion, mcpversion, minecraftHome, containers };
+        return new Object[] { major, minor, rev, build, "1.7.10", mcpversion, minecraftHome, containers };
     }
 }

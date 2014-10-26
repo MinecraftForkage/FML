@@ -7,8 +7,7 @@
  import cpw.mods.fml.relauncher.Side;
  import cpw.mods.fml.relauncher.SideOnly;
  import java.io.File;
-@@ -140,6 +141,7 @@
-                 return this.call();
+@@ -140,5 +141,6 @@
              }
          });
 +        FMLCommonHandler.instance().enhanceCrashReport(this, this.field_85061_c);

@@ -19,3 +19,5 @@
 
 #Patch reject
 *.rej
+/vanilla-src
+/src/main/resources/deobfuscation_data-missing.lzma

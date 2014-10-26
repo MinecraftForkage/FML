@@ -7,7 +7,7 @@
 +    private cpw.mods.fml.common.registry.RegistryDelegate<Item> delegate;
      public ItemStack(Block p_i1876_1_)
      {
-         this(p_i1876_1_, 1);
+         this((Block)p_i1876_1_, 1);
 @@ -72,7 +73,7 @@
  
      public ItemStack(Item p_i1881_1_, int p_i1881_2_, int p_i1881_3_)

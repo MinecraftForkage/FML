@@ -36,8 +36,8 @@
                      {
                          NetworkManager.this.func_150723_a(enumconnectionstate);
                      }
-@@ -315,6 +317,11 @@
-         this.channelRead0(p_channelRead0_1_, (Packet)p_channelRead0_2_);
+@@ -315,5 +317,10 @@
+         this.channelRead0(p_channelRead0_1_, (Packet)((Packet)p_channelRead0_2_));
      }
  
 +    public Channel channel()
@@ -45,6 +45,5 @@
 +        return field_150746_k;
 +    }
 +
-     static class InboundHandlerTuplePacketListener
-         {
-             private final Packet field_150774_a;
+     static
+     {

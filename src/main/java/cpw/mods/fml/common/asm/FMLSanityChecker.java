@@ -30,7 +30,6 @@ import com.google.common.io.ByteStreams;
 import cpw.mods.fml.common.CertificateHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
-import cpw.mods.fml.common.patcher.ClassPatchManager;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.FMLRelaunchLog;
 import cpw.mods.fml.relauncher.IFMLCallHook;
@@ -178,7 +177,6 @@ public class FMLSanityChecker implements IFMLCallHook
         cl = (LaunchClassLoader) data.get("classLoader");
         File mcDir = (File)data.get("mcLocation");
         fmlLocation = (File)data.get("coremodLocation");
-        ClassPatchManager.INSTANCE.setup(FMLLaunchHandler.side());
         FMLDeobfuscatingRemapper.INSTANCE.setup(mcDir, cl, (String) data.get("deobfuscationFileName"));
     }
 

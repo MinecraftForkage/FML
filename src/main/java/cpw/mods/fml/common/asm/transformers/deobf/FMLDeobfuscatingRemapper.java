@@ -44,7 +44,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.common.io.CharSource;
 
-import cpw.mods.fml.common.patcher.ClassPatchManager;
 import cpw.mods.fml.relauncher.FMLRelaunchLog;
 
 public class FMLDeobfuscatingRemapper extends Remapper {
@@ -190,7 +189,7 @@ public class FMLDeobfuscatingRemapper extends Remapper {
         {
             try
             {
-                byte[] classBytes = ClassPatchManager.INSTANCE.getPatchedResource(owner, map(owner).replace('/', '.'), classLoader);
+                byte[] classBytes = classLoader.getClassBytes(owner);
                 if (classBytes == null)
                 {
                     return null;
@@ -339,7 +338,7 @@ public class FMLDeobfuscatingRemapper extends Remapper {
         {
             String superName = null;
             String[] interfaces = new String[0];
-            byte[] classBytes = ClassPatchManager.INSTANCE.getPatchedResource(name, map(name), classLoader);
+            byte[] classBytes = classLoader.getClassBytes(name);
             if (classBytes != null)
             {
                 ClassReader cr = new ClassReader(classBytes);

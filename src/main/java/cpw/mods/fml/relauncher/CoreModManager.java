@@ -177,15 +177,6 @@ public class CoreModManager {
         }
 
         tweaker.injectCascadingTweak("cpw.mods.fml.common.launcher.FMLInjectionAndSortingTweaker");
-        try
-        {
-            classLoader.registerTransformer("cpw.mods.fml.common.asm.transformers.PatchingTransformer");
-        }
-        catch (Exception e)
-        {
-            FMLRelaunchLog.log(Level.ERROR, e, "The patch transformer failed to load! This is critical, loading cannot continue!");
-            throw Throwables.propagate(e);
-        }
 
         loadPlugins = new ArrayList<FMLPluginWrapper>();
         for (String rootPluginName : rootPlugins)

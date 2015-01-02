@@ -29,7 +29,7 @@ public class FMLInjectionData
     static String minor;
     static String rev;
     static String build;
-    static String mccversion;
+    final static String mccversion = "1.7.10";
     static String mcpversion;
     static String deobfuscationDataHash;
 
@@ -57,17 +57,16 @@ public class FMLInjectionData
         minor = properties.getProperty("fmlbuild.minor.number", "missing");
         rev = properties.getProperty("fmlbuild.revision.number", "missing");
         build = properties.getProperty("fmlbuild.build.number", "missing");
-        mccversion = properties.getProperty("fmlbuild.mcversion", "missing");
         mcpversion = properties.getProperty("fmlbuild.mcpversion", "missing");
         deobfuscationDataHash = properties.getProperty("fmlbuild.deobfuscation.hash","deadbeef");
     }
 
     static String debfuscationDataName()
     {
-        return "/deobfuscation_data-"+mccversion+".lzma";
+        return "/deobfuscation_data-missing.lzma";
     }
     public static Object[] data()
     {
-        return new Object[] { major, minor, rev, build, "1.7.10", mcpversion, minecraftHome, containers };
+        return new Object[] { major, minor, rev, build, mccversion, mcpversion, minecraftHome, containers };
     }
 }

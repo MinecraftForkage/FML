@@ -266,20 +266,6 @@ public class FMLDeobfuscatingRemapper extends Remapper {
 
     public String unmap(String typeName)
     {
-        if (classNameBiMap == null || classNameBiMap.isEmpty())
-        {
-            return typeName;
-        }
-
-        if (classNameBiMap.containsValue(typeName))
-        {
-            return classNameBiMap.inverse().get(typeName);
-        }
-        int dollarIdx = typeName.lastIndexOf('$');
-        if (dollarIdx > -1)
-        {
-            return unmap(typeName.substring(0, dollarIdx)) + "$" + typeName.substring(dollarIdx + 1);
-        }
         return typeName;
     }
 

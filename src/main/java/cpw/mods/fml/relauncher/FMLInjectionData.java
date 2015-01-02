@@ -25,10 +25,10 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 public class FMLInjectionData
 {
     static File minecraftHome;
-    static String major;
-    static String minor;
-    static String rev;
-    static String build;
+    final static String major = "7";
+    final static String minor = "10";
+    final static String rev = "85";
+    final static String build = "1277";
     final static String mccversion = "1.7.10";
     static String mcpversion;
     static String deobfuscationDataHash;
@@ -53,10 +53,6 @@ public class FMLInjectionData
             }
         }
 
-        major = properties.getProperty("fmlbuild.major.number", "missing");
-        minor = properties.getProperty("fmlbuild.minor.number", "missing");
-        rev = properties.getProperty("fmlbuild.revision.number", "missing");
-        build = properties.getProperty("fmlbuild.build.number", "missing");
         mcpversion = properties.getProperty("fmlbuild.mcpversion", "missing");
         deobfuscationDataHash = properties.getProperty("fmlbuild.deobfuscation.hash","deadbeef");
     }

@@ -106,7 +106,7 @@ public class CoreModManager {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("mcLocation", mcDir);
             data.put("coremodList", loadPlugins);
-            data.put("runtimeDeobfuscationEnabled", !deobfuscatedEnvironment);
+            data.put("runtimeDeobfuscationEnabled", true); // XXX BACKCOMPAT: some mods assume we're in MCP when this is false
             FMLRelaunchLog.fine("Running coremod plugin %s", name);
             data.put("coremodLocation", location);
             coreModInstance.injectData(data);
@@ -117,7 +117,7 @@ public class CoreModManager {
                 {
                     IFMLCallHook call = (IFMLCallHook) Class.forName(setupClass, true, classLoader).newInstance();
                     Map<String, Object> callData = new HashMap<String, Object>();
-                    callData.put("runtimeDeobfuscationEnabled", !deobfuscatedEnvironment);
+                    callData.put("runtimeDeobfuscationEnabled", true); // XXX BACKCOMPAT: some mods assume we're in MCP when this is false
                     callData.put("mcLocation", mcDir);
                     callData.put("classLoader", classLoader);
                     callData.put("coremodLocation", location);

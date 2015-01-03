@@ -4,10 +4,10 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import cpw.mods.fml.common.asm.transformers.StaticFieldFixingTransformer;
 import cpw.mods.fml.relauncher.CoreModManager;
 import cpw.mods.fml.relauncher.FMLInjectionData;
 import cpw.mods.fml.relauncher.FMLRelaunchLog;
-
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -31,6 +31,7 @@ public class FMLDeobfTweaker implements ITweaker {
         {
             classLoader.registerTransformer(transformer);
         }
+        classLoader.registerTransformer("cpw.mods.fml.common.asm.transformers.StaticFieldFixingTransformer");
         classLoader.registerTransformer("cpw.mods.fml.common.asm.transformers.ModAccessTransformer");
         classLoader.registerTransformer("cpw.mods.fml.common.asm.transformers.ItemStackTransformer");
         try

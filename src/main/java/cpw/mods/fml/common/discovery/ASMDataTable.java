@@ -14,6 +14,7 @@ package cpw.mods.fml.common.discovery;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import com.google.common.base.Predicate;
@@ -83,13 +84,22 @@ public class ASMDataTable
     private static class ModContainerPredicate implements Predicate<ASMData>
     {
         private ModContainer container;
-        public ModContainerPredicate(ModContainer container)
+        private Map<String, String> classToSourceFile;
+        public ModContainerPredicate(ModContainer container, Map<String, String> classToSourceFile)
         {
             this.container = container;
+            this.classToSourceFile = classToSourceFile;
         }
         @Override
         public boolean apply(ASMData data)
         {
+        	if(Boolean.getBoolean("minecraftforkage.loadingFromBakedJAR")) {
+        		if(container.MCForkage_getMainClassName() == null)
+        			return false;
+        		if(!Objects.equals(classToSourceFile.get(data.className), classToSourceFile.get(container.MCForkage_getMainClassName())))
+        			return false;
+        	}
+        	
             return container.getSource().equals(data.candidate.getModContainer());
         }
     }
@@ -98,6 +108,8 @@ public class ASMDataTable
 
     private List<ModContainer> containers = Lists.newArrayList();
     private SetMultimap<String,ModCandidate> packageMap = HashMultimap.create();
+    
+    private Map<String, String> classToSourceFile = null;
 
     public SetMultimap<String,ASMData> getAnnotationsFor(ModContainer container)
     {
@@ -106,12 +118,16 @@ public class ASMDataTable
             ImmutableMap.Builder<ModContainer, SetMultimap<String, ASMData>> mapBuilder = ImmutableMap.<ModContainer, SetMultimap<String,ASMData>>builder();
             for (ModContainer cont : containers)
             {
-                Multimap<String, ASMData> values = Multimaps.filterValues(globalAnnotationData, new ModContainerPredicate(cont));
+                Multimap<String, ASMData> values = Multimaps.filterValues(globalAnnotationData, new ModContainerPredicate(cont, classToSourceFile));
                 mapBuilder.put(cont, ImmutableSetMultimap.copyOf(values));
             }
             containerAnnotationData = mapBuilder.build();
         }
         return containerAnnotationData.get(container);
+    }
+    
+    public void MCForkage_applyModSourceMap(Map<String, String> classToSourceFile) {
+    	this.classToSourceFile = classToSourceFile;
     }
 
     public Set<ASMData> getAll(String annotation)

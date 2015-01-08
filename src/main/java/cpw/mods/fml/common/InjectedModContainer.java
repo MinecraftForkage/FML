@@ -23,6 +23,7 @@ import com.google.common.eventbus.EventBus;
 import cpw.mods.fml.common.versioning.ArtifactVersion;
 import cpw.mods.fml.common.versioning.VersionRange;
 
+// TODO what is the purpose of this class?
 public class InjectedModContainer implements ModContainer
 {
     private File source;
@@ -200,5 +201,10 @@ public class InjectedModContainer implements ModContainer
     public List<String> getOwnedPackages()
     {
         return wrappedContainer.getOwnedPackages();
+    }
+    
+    @Override
+    public String MCForkage_getMainClassName() {
+    	return wrappedContainer.MCForkage_getMainClassName();
     }
 }

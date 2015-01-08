@@ -147,4 +147,9 @@ public interface ModContainer
     String getGuiClassName();
 
     List<String> getOwnedPackages();
+    
+    /**
+     * TODO: remove me when possible
+     */
+    String MCForkage_getMainClassName();
 }

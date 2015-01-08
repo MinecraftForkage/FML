@@ -200,4 +200,11 @@ public class DummyModContainer implements ModContainer
     {
         return ImmutableList.of();
     }
+    
+    @Override
+    public String MCForkage_getMainClassName() {
+    	if(getClass() == DummyModContainer.class)
+    		return null;
+    	return getClass().getName();
+    }
 }

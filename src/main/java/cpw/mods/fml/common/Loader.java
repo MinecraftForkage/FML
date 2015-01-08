@@ -344,6 +344,15 @@ public class Loader
 	            FMLLog.info("Also searching %s for mods", versionSpecificModsDir);
 	            discoverer.findModDirMods(versionSpecificModsDir);
 	        }
+        
+        } else {
+        	Properties p = new Properties();
+        	try {
+        		p.load(Loader.class.getResourceAsStream("/mcforkage-class-to-source-map.properties"));
+        	} catch(IOException e) {
+        		throw new RuntimeException("Failed to load mcforkage-class-to-source-map.properties", e);
+        	}
+        	discoverer.getASMTable().MCForkage_applyModSourceMap((Map<String, String>)(Map)p);
         }
 
         mods.addAll(discoverer.identifyMods());

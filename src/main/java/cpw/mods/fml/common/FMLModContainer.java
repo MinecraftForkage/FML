@@ -24,7 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
 import org.apache.logging.log4j.Level;
+
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -606,5 +608,10 @@ public class FMLModContainer implements ModContainer
     public List<String> getOwnedPackages()
     {
         return candidate.getContainedPackages();
+    }
+    
+    @Override
+    public String MCForkage_getMainClassName() {
+    	return className;
     }
 }

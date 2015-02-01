@@ -31,9 +31,6 @@ public class FMLInjectionAndSortingTweaker implements ITweaker {
         {
             // We sort the tweak list here so that it obeys the tweakordering
             CoreModManager.sortTweakList();
-            @SuppressWarnings("unchecked")
-            List<String> newTweaks = (List<String>) Launch.blackboard.get("TweakClasses");
-            newTweaks.add("cpw.mods.fml.common.launcher.TerminalTweaker");
         }
         run = true;
     }

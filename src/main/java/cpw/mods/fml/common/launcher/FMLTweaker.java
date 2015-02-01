@@ -38,6 +38,8 @@ public class FMLTweaker implements ITweaker {
         {
             throw new RuntimeException("FML was unable to install the security manager. The game will not start", se);
         }
+        
+        Launch.blackboard.put("IsForkage", true);
     }
     @SuppressWarnings("unchecked")
     @Override
